@@ -44,16 +44,31 @@ services:
     volumes:
       - strapi-data:/var/lib/postgresql/data/ #using a volume
       #- ./data:/var/lib/postgresql/data/ # if you want to use a bind folder
-
     ports:
-      - "5432:5432"
+      - "5433:5432"
     networks:
       - strapi
-
 volumes:
   strapi-data:
-
 networks:
   strapi:
     name: Strapi
     driver: bridge
+
+  # prometheus:
+  #     image: prom/prometheus
+  #     volumes:
+  #        - C:\Users\Nathan\Documents\Ecole\CFaInsta\CRV\prometheus-2.49.1.windows-amd64:/etc/prometheus
+  #       #  - D:/CFA-INSTA-COURS/CODE/DEVOPSCRV/prometheus-2.49.1:/etc/prometheus
+  #       #- ./prometheus:/etc/prometheus
+  #     ports:
+  #       - '9090:9090'
+
+  # grafana:
+  #   image: grafana/grafana
+  #   environment:
+  #     - GF_SECURITY_ADMIN_PASSWORD=admin
+  #   ports:
+  #     - '3001:3000'
+  #   depends_on:
+  #     - prometheus

@@ -12,12 +12,14 @@ RUN npm install -g node-gyp
 RUN npm install -g esbuild-wasm
 RUN npm config set fetch-retry-maxtimeout 600000 -g
 RUN npm cache clean --force
-RUN npm ci
+RUN npm cache clean --force --cache /opt/.npm
+RUN npm ci --legacy-peer-deps
 
 WORKDIR /opt/app
 COPY . .
-RUN chown -R node:node /opt/app
-USER node
+
 
 EXPOSE 1337
 CMD ["npm", "run", "develop"]
+# CMD ["yarn", "develop"]
+
