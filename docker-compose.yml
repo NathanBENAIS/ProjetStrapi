@@ -48,6 +48,29 @@ services:
       - "5433:5432"
     networks:
       - strapi
+  prometheus:
+      image: prom/prometheus
+      volumes:
+        - ./prometheus-2.49.1.windows-amd64/:/etc/prometheus/
+      command:
+        - "--config.file=/etc/prometheus/prometheus.yml"
+      ports:
+        - '9090:9090'
+      networks:
+        - strapi
+      depends_on:
+        - strapi
+  grafana:
+    image: grafana/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    ports:
+      - '3001:3000'
+    depends_on:
+      - prometheus
+    networks:
+      - strapi
+
 volumes:
   strapi-data:
 networks:
@@ -55,14 +78,7 @@ networks:
     name: Strapi
     driver: bridge
 
-  # prometheus:
-  #     image: prom/prometheus
-  #     volumes:
-  #        - C:\Users\Nathan\Documents\Ecole\CFaInsta\CRV\prometheus-2.49.1.windows-amd64:/etc/prometheus
-  #       #  - D:/CFA-INSTA-COURS/CODE/DEVOPSCRV/prometheus-2.49.1:/etc/prometheus
-  #       #- ./prometheus:/etc/prometheus
-  #     ports:
-  #       - '9090:9090'
+
 
   # grafana:
   #   image: grafana/grafana
