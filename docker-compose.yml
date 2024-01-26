@@ -30,6 +30,14 @@ services:
       - strapi
     depends_on:
       - strapiDB
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: '1G'
+        # reservations:
+        #   memory: '256M'
+
 
   strapiDB:
     container_name: strapiDB

@@ -31,12 +31,6 @@
     },
     "PublishedAt": {
       "type": "date"
-    },
-    "categories": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::category.category",
-      "inversedBy": "articles"
     }
   }
 }

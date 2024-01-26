@@ -1,2 +1,1 @@
-docker rm mon-conteneur
-docker rmi -f index
+docker-compose down

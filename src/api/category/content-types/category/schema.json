@@ -17,12 +17,6 @@
     },
     "Description": {
       "type": "blocks"
-    },
-    "articles": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::article.article",
-      "mappedBy": "categories"
     }
   }
 }
